@@ -47,38 +47,43 @@ async function loadSiswa() {
     let html = `
 <div class="mt-4 animate-fade">
 
-<div class="overflow-x-auto rounded-lg border border-gray-200">
-<table class="min-w-[500px] w-full text-sm">
+<table class="w-full text-sm">
 
-<thead class="bg-gray-100 text-gray-700 sticky top-0">
+<thead class="hidden md:table-header-group bg-gray-100 text-gray-700">
 <tr>
-<th class="px-3 py-2 text-center whitespace-nowrap">NIS</th>
-<th class="px-3 py-2 text-left whitespace-nowrap">Nama</th>
-<th class="px-3 py-2 text-center whitespace-nowrap">Nilai</th>
+<th class="px-3 py-2 text-center border">NIS</th>
+<th class="px-3 py-2 text-left border">Nama</th>
+<th class="px-3 py-2 text-center border">Nilai</th>
 </tr>
 </thead>
 
-<tbody class="divide-y">
+<tbody class="space-y-5 md:space-y-0">
 `;
 
     siswaAktif.forEach((s) => {
         html += `
-<tr class="hover:bg-gray-50 transition">
-<td class="px-3 py-2 text-center whitespace-nowrap">${s[0]}</td>
+<tr class="block md:table-row border border-gray-200 md:border-transparent md:border-0 rounded-lg md:rounded-none p-3 md:p-0 bg-gray-50 md:hover:bg-gray-100 md:bg-transparent shadow md:shadow-none transition duration-200 ease-out">
 
-<td class="px-3 py-2 whitespace-nowrap">
-<div class="max-w-[220px]">
-${s[1]}
-</div>
+<td class="flex justify-between md:table-cell border-0 md:border px-2 py-1 md:p-2">
+<span class="text-gray-600 md:hidden">NIS</span>
+<span class="text-center text-gray-800 md:text-gray-700 font-medium w-auto md:w-full">${s[0]}</span>
 </td>
 
-<td class="px-3 py-2 w-[120px]">
-<input 
+<td class="flex justify-between md:table-cell border-0 md:border px-2 py-1 md:p-2">
+<span class="text-gray-600 md:hidden">Nama</span>
+<span class="font-medium text-gray-800 md:text-gray-700">${s[1]}</span>
+</td>
+
+<td class="flex justify-between md:table-cell border-0 md:border px-2 py-1 md:p-2">
+<span class="text-gray-500 md:hidden">Nilai</span>
+
+<input
 type="text"
 id="n_${s[0]}"
-inputmode="text"
-class="w-full border border-gray-300 rounded-lg p-2 text-sm transition">
+inputmode="numeric"
+class="w-24 md:w-full border border-gray-300 rounded-md px-2 py-1">
 </td>
+
 </tr>
 `;
     });
@@ -86,7 +91,6 @@ class="w-full border border-gray-300 rounded-lg p-2 text-sm transition">
     html += `
 </tbody>
 </table>
-</div>
 
 <button
 id="btnSimpan"
