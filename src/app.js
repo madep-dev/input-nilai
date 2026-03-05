@@ -45,78 +45,63 @@ async function loadSiswa() {
     siswaAktif = semuaSiswa.filter((s) => s[2] == kelas);
 
     let html = `
-<div class="mt-4 animate-fade">
-
-<table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
-
-<thead class="hidden md:table-header-group bg-gray-100 text-gray-700">
-<tr>
-<th class="px-4 py-3 text-center border-b">NIS</th>
-<th class="px-4 py-3 text-left border-b">Nama</th>
-<th class="px-4 py-3 text-center border-b">Nilai</th>
-</tr>
-</thead>
-
-<tbody class="divide-y md:divide-y-0 space-y-5 md:space-y-0">
-`;
+        <div class="mt-4 animate-fade">
+            <table class="w-full text-sm border border-gray-200 rounded-lg md:rounded-none overflow-hidden">
+            <thead class="hidden md:table-header-group bg-gray-100 text-gray-700">
+                <tr>
+                <th class="px-4 py-3 text-center border-b">NIS</th>
+                <th class="px-4 py-3 text-left border-b">Nama</th>
+                <th class="px-4 py-3 text-center border-b md:w-24">Nilai</th>
+                </tr>
+            </thead>
+            <tbody class="space-y-5 md:space-y-0">
+        `;
 
     siswaAktif.forEach((s) => {
         html += `
-<tr class="block md:table-row bg-gray-50 md:bg-transparent md:hover:bg-gray-50 rounded-lg md:rounded-none p-4 md:p-0 transition">
+            <tr class="block border border-gray-200 md:border-none md:table-row bg-gray-50 md:bg-transparent md:hover:bg-gray-50 rounded-lg md:rounded-none p-2 md:p-0 transition">
+                <td class="flex flex-col md:table-cell md:text-center md:border-b p-1.5 md:px-4 md:py-3">
+                    <span class="text-xs text-gray-500 md:hidden">
+                    NIS
+                    </span>
+                    <span class="font-medium text-gray-700">
+                    ${s[0]}
+                    </span>
+                </td>
 
-<td class="flex md:table-cell flex-col md:flex-row md:items-center md:border-b px-2 py-2 md:px-4 md:py-3">
+                <td class="flex flex-col md:table-cell md:border-b p-1.5 md:px-4 md:py-3">
+                    <span class="text-xs text-gray-500 md:hidden">
+                    Nama
+                    </span>
+                    <span class="font-medium text-gray-700 wrap-break-word">
+                    ${s[1]}
+                    </span>
+                </td>
 
-<span class="text-xs text-gray-500 md:hidden">
-NIS
-</span>
-
-<span class="font-medium text-gray-800 md:text-center w-full">
-${s[0]}
-</span>
-
-</td>
-
-<td class="flex flex-col md:table-cell md:border-b px-2 py-2 md:px-4 md:py-3">
-
-<span class="text-xs text-gray-500 md:hidden">
-Nama
-</span>
-
-<span class="wrap-break-word">
-${s[1]}
-</span>
-
-</td>
-
-<td class="flex flex-col md:table-cell md:border-b px-2 py-2 md:px-4 md:py-3">
-
-<span class="text-xs text-gray-500 md:hidden">
-Nilai
-</span>
-
-<input
-type="text"
-id="n_${s[0]}"
-class="w-full border border-gray-300 rounded-md px-2 py-1"
-/>
-
-</td>
-</tr>
-`;
+                <td class="flex flex-col md:table-cell md:border-b p-1.5 md:px-4 md:py-3">
+                    <span class="text-xs text-gray-500 md:hidden">
+                    Nilai
+                    </span>
+                    <input
+                    type="text"
+                    id="n_${s[0]}"
+                    class="w-28 md:w-full border border-gray-300 rounded-md px-2 py-1"
+                    />
+                </td>
+            </tr>
+            `;
     });
 
     html += `
-</tbody>
-</table>
-
-<button
-id="btnSimpan"
-class="mt-6 w-full sm:w-auto px-6 py-2.5 bg-teal-600 hover:bg-teal-700 hover:shadow-md text-white font-medium rounded-lg transition duration-300 text-sm">
-Simpan Nilai
-</button>
-
-</div>
-`;
+            </tbody>
+            </table>
+                <button
+                id="btnSimpan"
+                class="mt-8 w-full sm:w-auto px-6 py-2.5 bg-teal-600 hover:bg-teal-700 hover:shadow-md text-white font-medium hover:-translate-y-0.5 rounded-lg transition duration-300 text-sm">
+                Simpan Nilai
+                </button>
+        </div>
+        `;
 
     document.getElementById("tabel").innerHTML = html;
     document.getElementById("jumlah").innerText = siswaAktif.length;
