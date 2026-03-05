@@ -45,48 +45,53 @@ async function loadSiswa() {
     siswaAktif = semuaSiswa.filter((s) => s[2] == kelas);
 
     let html = `
-<div class="mt-4 animate-fade">
+<div class="mt-4">
+
+<div class="overflow-x-auto md:overflow-visible rounded-xl border border-gray-200">
 
 <table class="w-full text-sm">
 
 <thead class="hidden md:table-header-group bg-gray-100 text-gray-700">
 <tr>
-<th class="px-3 py-2 text-center border">NIS</th>
-<th class="px-3 py-2 text-left border">Nama</th>
-<th class="px-3 py-2 text-center border">Nilai</th>
+<th class="px-3 py-2 border text-center">NIS</th>
+<th class="px-3 py-2 border text-left">Nama</th>
+<th class="px-3 py-2 border text-center">Nilai</th>
 </tr>
 </thead>
 
-<tbody class="space-y-5 md:space-y-0">
+<tbody class="space-y-3 md:space-y-0">
 `;
 
     siswaAktif.forEach((s) => {
         html += `
-<tr class="block md:table-row border border-gray-300 md:border-transparent md:border-0 rounded-lg md:rounded-none p-3 md:p-0 bg-gray-50 md:hover:bg-gray-100 md:bg-transparent transition duration-200 ease-out">
+<tr class="block md:table-row bg-white md:bg-transparent border md:border-0 rounded-lg md:rounded-none p-3 md:p-0 shadow-sm md:shadow-none">
 
-<td class="flex justify-between md:table-cell border-0 md:border px-2 py-1 md:p-2">
-<span class="text-gray-600 md:hidden">NIS</span>
-<span class="text-center text-gray-800 md:text-gray-700 font-medium w-auto md:w-full">${s[0]}</span>
+<td class="grid grid-cols-[90px_1fr]  md:block py-1 md:p-2 border-0 md:border">
+
+<span class="font-medium text-gray-500 md:hidden">NIS</span>
+<span class="wrap-break-word">${s[0]}</span>
+
 </td>
 
-<td class="flex justify-between md:table-cell border-0 md:border px-2 py-1 md:p-2 gap-3">
-<span class="font-medium text-gray-500 md:hidden shrink-0">
-Nama
-</span>
-<span class="md:max-w-[280px] wrap-break-word">
+<td class="grid grid-cols-[90px_1fr]  md:block py-1 md:p-2 border-0 md:border">
+
+<span class="font-medium text-gray-500 md:hidden">Nama</span>
+<span class="wrap-break-word leading-snug">
 ${s[1]}
 </span>
 
 </td>
 
-<td class="flex justify-between md:table-cell border-0 md:border px-2 py-1 md:p-2">
-<span class="text-gray-500 md:hidden">Nilai</span>
+<td class="grid grid-cols-[90px_1fr] items-center  md:block py-1 md:p-2 border-0 md:border">
+
+<span class="font-medium text-gray-500 md:hidden">Nilai</span>
 
 <input
 type="text"
 id="n_${s[0]}"
 inputmode="numeric"
-class="w-24 md:w-full border border-gray-300 rounded-md px-2 py-1">
+class="w-28 md:w-full border border-gray-300 rounded-md px-2 py-1 focus:ring-2 focus:ring-blue-400">
+
 </td>
 
 </tr>
@@ -96,10 +101,11 @@ class="w-24 md:w-full border border-gray-300 rounded-md px-2 py-1">
     html += `
 </tbody>
 </table>
+</div>
 
 <button
 id="btnSimpan"
-class="mt-6 w-full sm:w-auto px-5 py-2.5 bg-teal-600 hover:bg-teal-700 hover:shadow text-white font-medium rounded-lg transition duration-300 text-sm">
+class="mt-6 w-full sm:w-auto px-5 py-2.5 bg-teal-600 hover:bg-teal-700 hover:shadow text-white font-medium rounded-lg transition text-sm">
 Simpan Nilai
 </button>
 
