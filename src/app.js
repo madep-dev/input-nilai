@@ -5,21 +5,38 @@ let semuaSiswa = [];
 let siswaAktif = [];
 
 async function init() {
-    const kelas = await fetch(API + "?action=kelas").then((r) => r.json());
-    const mapel = await fetch(API + "?action=mapel").then((r) => r.json());
-    const siswa = await fetch(API + "?action=siswa").then((r) => r.json());
-
-    semuaSiswa = siswa.slice(1);
-
-    const kelasSelect = document.getElementById("kelas");
-    kelas.slice(1).forEach((k) => {
-        kelasSelect.innerHTML += `<option value="${k[1]}">${k[1]}</option>`;
+    Swal.fire({
+        title: "Memuat data",
+        text: "Mohon tunggu...",
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        },
     });
 
-    const mapelSelect = document.getElementById("mapel");
-    mapel.slice(1).forEach((m) => {
-        mapelSelect.innerHTML += `<option value="${m[0]}">${m[1]}</option>`;
-    });
+    try {
+        const [kelas, mapel, siswa] = await Promise.all([
+            fetch(API + "?action=kelas").then((r) => r.json()),
+            fetch(API + "?action=mapel").then((r) => r.json()),
+            fetch(API + "?action=siswa").then((r) => r.json()),
+        ]);
+
+        semuaSiswa = siswa.slice(1);
+
+        const kelasSelect = document.getElementById("kelas");
+        kelas.slice(1).forEach((k) => {
+            kelasSelect.innerHTML += `<option value="${k[1]}">${k[1]}</option>`;
+        });
+
+        const mapelSelect = document.getElementById("mapel");
+        mapel.slice(1).forEach((m) => {
+            mapelSelect.innerHTML += `<option value="${m[0]}">${m[1]}</option>`;
+        });
+
+        Swal.close();
+    } catch (err) {
+        Swal.fire("Error", "Gagal memuat data", "error");
+    }
 }
 
 async function loadSiswa() {
@@ -59,7 +76,7 @@ class="w-full border border-gray-300 rounded-md px-2 py-1 focus:ring-2 focus:rin
 </table>
 
 <button id="btnSimpan"
-class="mt-8 px-5 py-2 bg-green-600 hover:bg-green-700 hover:shadow hover:-translate-y-0.5 text-white font-medium rounded-lg py-2 transition duration-300 text-sm">
+class="mt-8 px-5 py-2 bg-green-600 hover:bg-green-700 hover:shadow hover:-translate-y-0.5 text-white font-medium rounded-lg transition duration-300 text-sm">
 Simpan Nilai
 </button>
 </div>

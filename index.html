@@ -30,44 +30,55 @@
         </style>
     </head>
 
-    <body class="bg-gray-100 min-h-screen font-[Inter] antialiased">
-        <div
-            class="bg-white rounded-xl shadow-md p-6 border border-gray-100 w-full md:max-w-4xl mx-auto my-10"
-        >
-            <h1 class="text-2xl font-bold mb-6">Input Nilai UTS</h1>
+    <body class="bg-gray-100 font-[Inter] antialiased">
+        <div class="min-h-screen py-6 sm:py-10 px-4">
+            <div
+                class="w-full max-w-4xl mx-auto bg-white rounded-xl shadow-md border border-gray-100 p-5 sm:p-6"
+            >
+                <h1 class="text-xl sm:text-2xl font-bold mb-6">
+                    Input Nilai PSAJ
+                </h1>
 
-            <div class="grid grid-cols-3 gap-x-6 mb-6">
-                <div>
-                    <label class="text-sm text-gray-600">Kelas</label>
-                    <select
-                        id="kelas"
-                        class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    ></select>
+                <!-- Form -->
+                <div
+                    class="grid gap-4 grid-cols-[repeat(auto-fit,minmax(180px,1fr))] items-end mb-6"
+                >
+                    <!-- Kelas -->
+                    <div class="w-full">
+                        <label class="text-sm text-gray-600">Kelas</label>
+                        <select
+                            id="kelas"
+                            class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                        ></select>
+                    </div>
+
+                    <!-- Mapel -->
+                    <div class="w-full">
+                        <label class="text-sm text-gray-600">Mapel</label>
+                        <select
+                            id="mapel"
+                            class="w-full border border-gray-300 rounded-lg p-2.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+                        ></select>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="w-full">
+                        <button
+                            id="btnLoad"
+                            class="w-full px-5 py-2.5 bg-blue-600 hover:bg-blue-700 hover:shadow text-white font-medium rounded-lg transition duration-300 text-sm"
+                        >
+                            Tampilkan Siswa
+                        </button>
+                    </div>
                 </div>
 
-                <div>
-                    <label class="text-sm text-gray-600">Mapel</label>
-                    <select
-                        id="mapel"
-                        class="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    ></select>
+                <div class="mb-2 text-sm text-gray-500">
+                    Total siswa: <span id="jumlah"></span>
                 </div>
 
-                <div class="flex items-end">
-                    <button
-                        id="btnLoad"
-                        class="px-5 py-2 bg-blue-600 hover:bg-blue-700 hover:shadow hover:-translate-y-0.5 text-white font-medium rounded-lg py-2 transition duration-300 text-sm"
-                    >
-                        Tampilkan Siswa
-                    </button>
-                </div>
+                <!-- tabel -->
+                <div id="tabel" class="overflow-x-auto"></div>
             </div>
-
-            <div class="mb-2 text-sm text-gray-500">
-                Total siswa: <span id="jumlah"></span>
-            </div>
-
-            <div id="tabel"></div>
         </div>
     </body>
 </html>
