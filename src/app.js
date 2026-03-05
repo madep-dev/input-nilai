@@ -62,16 +62,21 @@ async function loadSiswa() {
 
     siswaAktif.forEach((s) => {
         html += `
-<tr class="block md:table-row border border-gray-200 md:border-transparent md:border-0 rounded-lg md:rounded-none p-3 md:p-0 bg-gray-50 md:hover:bg-gray-100 md:bg-transparent shadow md:shadow-none transition duration-200 ease-out">
+<tr class="block md:table-row border border-gray-300 md:border-transparent md:border-0 rounded-lg md:rounded-none p-3 md:p-0 bg-gray-50 md:hover:bg-gray-100 md:bg-transparent transition duration-200 ease-out">
 
 <td class="flex justify-between md:table-cell border-0 md:border px-2 py-1 md:p-2">
 <span class="text-gray-600 md:hidden">NIS</span>
 <span class="text-center text-gray-800 md:text-gray-700 font-medium w-auto md:w-full">${s[0]}</span>
 </td>
 
-<td class="flex justify-between md:table-cell border-0 md:border px-2 py-1 md:p-2">
-<span class="text-gray-600 md:hidden">Nama</span>
-<span class="font-medium text-gray-800 md:text-gray-700">${s[1]}</span>
+<td class="flex justify-between md:table-cell border-0 md:border px-2 py-1 md:p-2 gap-3">
+<span class="font-medium text-gray-500 md:hidden shrink-0">
+Nama
+</span>
+<span class="md:max-w-[280px] wrap-break-word">
+${s[1]}
+</span>
+
 </td>
 
 <td class="flex justify-between md:table-cell border-0 md:border px-2 py-1 md:p-2">
