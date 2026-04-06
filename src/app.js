@@ -83,7 +83,7 @@ async function loadSiswa() {
                     Nilai
                     </span>
                     <input
-                    type="text"
+                    type="number"
                     id="n_${s[0]}"
                     class="w-28 md:w-full border border-gray-300 rounded-md px-2 py-1"
                     />
