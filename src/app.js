@@ -6,9 +6,10 @@ let siswaAktif = [];
 
 async function init() {
     Swal.fire({
-        title: "Memuat data",
-        text: "Mohon tunggu...",
+        title: "Mohon tunggu",
+        text: "Sedang memuat data awal ...",
         allowOutsideClick: false,
+        padding: "2em 0em",
         didOpen: () => {
             Swal.showLoading();
         },
@@ -35,7 +36,13 @@ async function init() {
 
         Swal.close();
     } catch (err) {
-        Swal.fire("Error", "Gagal memuat data", "error");
+        Swal.fire({
+            icon: "error",
+            title: "Error!",
+            text: "Gagal memuat data",
+            confirmButtonText: "Oke",
+            confirmButtonColor: "#3b82f6",
+        });
     }
 }
 
@@ -98,6 +105,7 @@ async function loadSiswa() {
                 <button
                 id="btnSimpan"
                 class="mt-8 w-full sm:w-auto px-6 py-2.5 bg-teal-600 hover:bg-teal-700 hover:shadow-md text-white font-medium hover:-translate-y-0.5 rounded-lg transition duration-300 text-sm">
+                <i class="ri-check-line"></i>
                 Simpan Nilai
                 </button>
         </div>
@@ -133,14 +141,16 @@ async function simpan() {
         Swal.fire({
             icon: "warning",
             title: "Belum ada nilai",
-            text: "Silakan isi minimal satu nilai.",
+            text: "Silakan input minimal satu nilai",
+            confirmButtonText: "Oke",
+            confirmButtonColor: "#3b82f6",
         });
         return;
     }
 
     Swal.fire({
-        title: "Menyimpan nilai...",
-        text: "Mohon tunggu",
+        title: "Mohon tunggu",
+        text: "Sedang menyimpan nilai ...",
         allowOutsideClick: false,
         didOpen: () => {
             Swal.showLoading();
@@ -157,8 +167,10 @@ async function simpan() {
 
         Swal.fire({
             icon: "success",
-            title: "Berhasil",
+            title: "Berhasil!",
             text: "Nilai berhasil disimpan",
+            confirmButtonText: "Oke",
+            confirmButtonColor: "#3b82f6",
         });
 
         document.getElementById("tabel").innerHTML = "";
@@ -166,8 +178,10 @@ async function simpan() {
     } catch (err) {
         Swal.fire({
             icon: "error",
-            title: "Terjadi kesalahan",
+            title: "Error!",
             text: "Gagal menyimpan data",
+            confirmButtonText: "Oke",
+            confirmButtonColor: "#3b82f6",
         });
     }
 }
